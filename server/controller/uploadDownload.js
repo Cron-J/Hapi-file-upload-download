@@ -5,6 +5,7 @@ var fs = require('fs'),
 /*
  * Display upload form
  */
+
 exports.display_form = {
     handler: function(requestuest, reply) {
         reply(
@@ -14,7 +15,7 @@ exports.display_form = {
             '</form>'
         );
     }
-}
+};
 
 /*
  * upload file
@@ -31,12 +32,14 @@ exports.uploadFile = {
         form.parse(requset.payload, function(err, fields, files) {
             if (err) return reply(err);
             else upload(files, reply);
-        })
+        });
     }
-}
+};
+
 /*
  * upload file function
  */
+
 var upload = function(files, reply) {
     fs.readFile(files.file[0].path, function(err, data) {
         checkFileExist();
@@ -44,9 +47,9 @@ var upload = function(files, reply) {
             if (err) return reply(err);
             else return reply('File uploaded to: ' + Config.MixInsideFolder + files.file[0].originalFilename);
 
-        })
-    })
-}
+        });
+    });
+};
 
 /*
  * Check File existence and create if not exist
@@ -60,11 +63,12 @@ var checkFileExist = function() {
             if (exists === false) fs.mkdirSync(Config.MixFolder);
         });
     });
-}
+};
 
 /**
  * get file
  */
+
 exports.getFile = {
     handler: function(request, reply) {
         var file = request.params.file,
@@ -72,42 +76,46 @@ exports.getFile = {
             ext = file.substr(file.lastIndexOf('.') + 1);
         fs.readFile(path, function(error, content) {
             if (error) return reply("file not found");
+            var contentType;
             switch (ext) {
                 case "pdf":
-                    reply(content).header('Content-Type', 'application/pdf').header("Content-Disposition", "attachment; filename=" + file);
+                    contentType = 'application/pdf';
                     break;
                 case "ppt":
-                    reply(content).header('Content-Type', 'application/vnd.ms-powerpoint').header("Content-Disposition", "attachment; filename=" + file);
+                    contentType = 'application/vnd.ms-powerpoint';
                     break;
                 case "pptx":
-                    reply(content).header('Content-Type', 'application/vnd.openxmlformats-officedocument.preplyentationml.preplyentation').header("Content-Disposition", "attachment; filename=" + file);
+                    contentType = 'application/vnd.openxmlformats-officedocument.preplyentationml.preplyentation';
                     break;
                 case "xls":
-                    reply(content).header('Content-Type', 'application/vnd.ms-excel').header("Content-Disposition", "attachment; filename=" + file);
+                    contentType = 'application/vnd.ms-excel';
                     break;
                 case "xlsx":
-                    reply(content).header('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet').header("Content-Disposition", "attachment; filename=" + file);
+                    contentType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
                     break;
                 case "doc":
-                    reply(content).header('Content-Type', 'application/msword').header("Content-Disposition", "attachment; filename=" + file);
+                    contentType = 'application/msword';
                     break;
                 case "docx":
-                    reply(content).header('Content-Type', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document').header("Content-Disposition", "attachment; filename=" + file);
+                    contentType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
                     break;
                 case "csv":
-                    reply(content).header('Content-Type', 'application/octet-stream').header("Content-Disposition", "attachment; filename=" + file);
+                    contentType = 'application/octet-stream';
                     break;
                 default:
                     reply.file(path);
             }
 
+            reply(content).header('Content-Type', contentType).header("Content-Disposition", "attachment; filename=" + file);
+
         });
     }
-}
+};
 
 /**
  *get fileList
  */
+ 
 exports.fileList = {
     handler: function(request, reply) {
         var files = [];
@@ -126,4 +134,4 @@ exports.fileList = {
             return reply(files);
         });
     }
-}
+};
