@@ -15,4 +15,4 @@ node_modules
 npm-debug.log
 /.idea
 server/public
-
+.jshintrc
