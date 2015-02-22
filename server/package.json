@@ -1,0 +1,24 @@
+{
+  "name": "hapi-file-upload-download",
+  "description": "hapi-file-upload-download",
+  "version": "0.1.0",
+  "main": "server",
+  "engines": {
+    "node": ">=0.10.22"
+  },
+  "dependencies": {
+    "hapi": "7.0.0",
+    "multiparty": "^4.1.1",
+    "walk": "^2.3.9"
+  },
+  "keywords": [
+    "express",
+    "file upload",
+    "file download",
+    "file list"
+  ],
+  "author": {
+    "name": "sonipandey",
+    "email": "sonipandey.71@gmail.com"
+  }
+}
