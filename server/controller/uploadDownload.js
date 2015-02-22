@@ -62,7 +62,7 @@ exports.getFile = {
      if(ext === "pdf" || ext ==="ppt" || ext ==="pptx" || ext === "xls" || ext === "xlsx" || ext === "doc" || ext === "docx" || ext === "csv"){
         fs.readFile(path, function(error, content) {
           if (error) {
-            reply(500);
+            reply("file not found");
           }
           else {
              if(ext === "pdf") reply(content).header('Content-Type', 'application/pdf')
