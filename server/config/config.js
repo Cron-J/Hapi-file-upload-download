@@ -5,5 +5,7 @@ module.exports = {
             port: 8000
     },
     publicFolder: './public',
-    uploadFolder: '/uploads'
+    uploadFolder: '/uploads',
+    MixFolder: './public/uploads',
+    MixInsideFolder: './public/uploads/'
 };
