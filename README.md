@@ -1,7 +1,7 @@
 Hapi-file-upload-download
 ========================
 
-The purpose of this app is to show a new way to work with Hapi.js, Mongodb, Mongoose, Angular.js.
+The purpose of this app is to upload and download the file of any extension. You don't need to worry about file extension, is going to work for all types of file.
 
 
 ### Install an app
