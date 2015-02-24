@@ -12,7 +12,7 @@
     "walk": "^2.3.9"
   },
   "keywords": [
-    "express",
+    "hapi",
     "file upload",
     "file download",
     "file list"
